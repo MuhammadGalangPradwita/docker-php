@@ -2,7 +2,8 @@ name: ci
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -10,30 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout source code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Login to Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_BRAACELLETTT }}
-          password: ${{ secrets.DOCKER_TOKEN }}
+          username: braacellettt
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # 3. Set up Docker Buildx (optional but recommended)
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      # 4. Build and push image
       - name: Build and Push Docker Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKER_BRAACELLETTT }}/almalinux:latest
-
-      # 5. Logout (optional)
-      - name: Logout from Docker Hub
-        run: docker logout
+          tags: braacellettt/${{ github.event.repository.name }}:latest
