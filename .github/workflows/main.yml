@@ -32,7 +32,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/myapp:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/almalinux:latest
 
       # 5. Logout (optional)
       - name: Logout from Docker Hub
