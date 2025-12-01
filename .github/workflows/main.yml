@@ -13,14 +13,14 @@ jobs:
     steps:
       # 1. Checkout repository
       - name: Checkout repository
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
 
       # 2. Login to Docker Hub
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}  # contoh: braacelleltt
-          password: ${{ secrets.DOCKERHUB_TOKEN }}  # token dari Docker Hub
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # 3. Setup Buildx
       - name: Set up Docker Buildx
