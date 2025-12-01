@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Login to Docker Hub
@@ -30,4 +30,5 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: braacellettt/${{ github.event.repository.name }}:latest
+          tags: ${{ vars.DOCKER_USERNAME }}/docker-php:latest
+
